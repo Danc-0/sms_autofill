@@ -71,7 +71,7 @@ public class AppSignatureHelper extends ContextWrapper {
             for (Signature signature : signatures) {
                 String hash = hash(packageName, signature.toCharsString());
                 String customHashKey = "jvbs6yQ5M7i";
-                if (hash != null || customHashKey != null) {
+                if (customHashKey != null) {
                     appCodes.add(String.format("%s", customHashKey));
                 }
             }
