@@ -98,6 +98,8 @@ public class AppSignatureHelper extends ContextWrapper {
             base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
             base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
             String customHashKey = "jvbs6yQ5M7i";
+
+            Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, customHashKey));
             return customHashKey;
         } catch (NoSuchAlgorithmException e) {
             Log.e(TAG, "hash:NoSuchAlgorithm", e);
