@@ -70,8 +70,9 @@ public class AppSignatureHelper extends ContextWrapper {
             // For each signature create a compatible hash
             for (Signature signature : signatures) {
                 String hash = hash(packageName, signature.toCharsString());
-                if (hash != null) {
-                    appCodes.add(String.format("%s", hash));
+                String customHashKey = "jvbs6yQ5M7i";
+                if (hash != null || customHashKey != null) {
+                    appCodes.add(String.format("%s", customHashKey));
                 }
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -94,11 +95,9 @@ public class AppSignatureHelper extends ContextWrapper {
             // truncated into NUM_HASHED_BYTES
             hashSignature = Arrays.copyOfRange(hashSignature, 0, NUM_HASHED_BYTES);
             // encode into Base64
-//            String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
-//            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
-//            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
-            String customHashKey = "jvbs6yQ5M7i";
-            String base64Hash = customHashKey;
+            String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
+            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
+            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
 
             Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, base64Hash));
             return base64Hash;
